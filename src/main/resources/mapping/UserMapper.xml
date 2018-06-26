@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.anbot.mapper.UserMapper">
+  <resultMap id="BaseResultMap" type="com.anbot.model.User">
+    <id column="userId" jdbcType="SMALLINT" property="userId" />
+    <result column="userName" jdbcType="VARCHAR" property="userName" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="tele" jdbcType="VARCHAR" property="tele" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="companyId" jdbcType="SMALLINT" property="companyId" />
+    <result column="companyDns" jdbcType="VARCHAR" property="companyDns" />
+    <result column="dept" jdbcType="VARCHAR" property="dept" />
+    <result column="managerId" jdbcType="SMALLINT" property="managerId" />
+    <result column="roleId" jdbcType="BIT" property="roleId" />
+    <result column="online" jdbcType="BIT" property="online" />
+    <result column="createT" jdbcType="TIMESTAMP" property="createT" />
+    <result column="modifyT" jdbcType="TIMESTAMP" property="modifyT" />
+    <result column="lastloginT" jdbcType="TIMESTAMP" property="lastloginT" />
+    <result column="count" jdbcType="INTEGER" property="count" />
+    <result column="enable" jdbcType="BIT" property="enable" />
+    <result column="tryLoginTimes" jdbcType="TINYINT" property="tryLoginTimes" />
+    <result column="verificationCode" jdbcType="VARCHAR" property="verificationCode" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    userId, userName, password, name, tele, email, companyId, companyDns, dept, managerId, 
+    roleId, online, createT, modifyT, lastloginT, count, enable, tryLoginTimes, verificationCode
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Short" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where userId = #{userId,jdbcType=SMALLINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Short">
+    delete from user
+    where userId = #{userId,jdbcType=SMALLINT}
+  </delete>
+  <insert id="insert" parameterType="com.anbot.model.User">
+    insert into user (userId, userName, password, 
+      name, tele, email, 
+      companyId, companyDns, dept, 
+      managerId, roleId, online, 
+      createT, modifyT, lastloginT, 
+      count, enable, tryLoginTimes, 
+      verificationCode)
+    values (#{userId,jdbcType=SMALLINT}, #{userName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{tele,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{companyId,jdbcType=SMALLINT}, #{companyDns,jdbcType=VARCHAR}, #{dept,jdbcType=VARCHAR}, 
+      #{managerId,jdbcType=SMALLINT}, #{roleId,jdbcType=BIT}, #{online,jdbcType=BIT}, 
+      #{createT,jdbcType=TIMESTAMP}, #{modifyT,jdbcType=TIMESTAMP}, #{lastloginT,jdbcType=TIMESTAMP}, 
+      #{count,jdbcType=INTEGER}, #{enable,jdbcType=BIT}, #{tryLoginTimes,jdbcType=TINYINT}, 
+      #{verificationCode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.anbot.model.User">
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        userId,
+      </if>
+      <if test="userName != null">
+        userName,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="tele != null">
+        tele,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="companyId != null">
+        companyId,
+      </if>
+      <if test="companyDns != null">
+        companyDns,
+      </if>
+      <if test="dept != null">
+        dept,
+      </if>
+      <if test="managerId != null">
+        managerId,
+      </if>
+      <if test="roleId != null">
+        roleId,
+      </if>
+      <if test="online != null">
+        online,
+      </if>
+      <if test="createT != null">
+        createT,
+      </if>
+      <if test="modifyT != null">
+        modifyT,
+      </if>
+      <if test="lastloginT != null">
+        lastloginT,
+      </if>
+      <if test="count != null">
+        count,
+      </if>
+      <if test="enable != null">
+        enable,
+      </if>
+      <if test="tryLoginTimes != null">
+        tryLoginTimes,
+      </if>
+      <if test="verificationCode != null">
+        verificationCode,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        #{userId,jdbcType=SMALLINT},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="tele != null">
+        #{tele,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null">
+        #{companyId,jdbcType=SMALLINT},
+      </if>
+      <if test="companyDns != null">
+        #{companyDns,jdbcType=VARCHAR},
+      </if>
+      <if test="dept != null">
+        #{dept,jdbcType=VARCHAR},
+      </if>
+      <if test="managerId != null">
+        #{managerId,jdbcType=SMALLINT},
+      </if>
+      <if test="roleId != null">
+        #{roleId,jdbcType=BIT},
+      </if>
+      <if test="online != null">
+        #{online,jdbcType=BIT},
+      </if>
+      <if test="createT != null">
+        #{createT,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyT != null">
+        #{modifyT,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastloginT != null">
+        #{lastloginT,jdbcType=TIMESTAMP},
+      </if>
+      <if test="count != null">
+        #{count,jdbcType=INTEGER},
+      </if>
+      <if test="enable != null">
+        #{enable,jdbcType=BIT},
+      </if>
+      <if test="tryLoginTimes != null">
+        #{tryLoginTimes,jdbcType=TINYINT},
+      </if>
+      <if test="verificationCode != null">
+        #{verificationCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.anbot.model.User">
+    update user
+    <set>
+      <if test="userName != null">
+        userName = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="tele != null">
+        tele = #{tele,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null">
+        companyId = #{companyId,jdbcType=SMALLINT},
+      </if>
+      <if test="companyDns != null">
+        companyDns = #{companyDns,jdbcType=VARCHAR},
+      </if>
+      <if test="dept != null">
+        dept = #{dept,jdbcType=VARCHAR},
+      </if>
+      <if test="managerId != null">
+        managerId = #{managerId,jdbcType=SMALLINT},
+      </if>
+      <if test="roleId != null">
+        roleId = #{roleId,jdbcType=BIT},
+      </if>
+      <if test="online != null">
+        online = #{online,jdbcType=BIT},
+      </if>
+      <if test="createT != null">
+        createT = #{createT,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyT != null">
+        modifyT = #{modifyT,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastloginT != null">
+        lastloginT = #{lastloginT,jdbcType=TIMESTAMP},
+      </if>
+      <if test="count != null">
+        count = #{count,jdbcType=INTEGER},
+      </if>
+      <if test="enable != null">
+        enable = #{enable,jdbcType=BIT},
+      </if>
+      <if test="tryLoginTimes != null">
+        tryLoginTimes = #{tryLoginTimes,jdbcType=TINYINT},
+      </if>
+      <if test="verificationCode != null">
+        verificationCode = #{verificationCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where userId = #{userId,jdbcType=SMALLINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.anbot.model.User">
+    update user
+    set userName = #{userName,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      tele = #{tele,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      companyId = #{companyId,jdbcType=SMALLINT},
+      companyDns = #{companyDns,jdbcType=VARCHAR},
+      dept = #{dept,jdbcType=VARCHAR},
+      managerId = #{managerId,jdbcType=SMALLINT},
+      roleId = #{roleId,jdbcType=BIT},
+      online = #{online,jdbcType=BIT},
+      createT = #{createT,jdbcType=TIMESTAMP},
+      modifyT = #{modifyT,jdbcType=TIMESTAMP},
+      lastloginT = #{lastloginT,jdbcType=TIMESTAMP},
+      count = #{count,jdbcType=INTEGER},
+      enable = #{enable,jdbcType=BIT},
+      tryLoginTimes = #{tryLoginTimes,jdbcType=TINYINT},
+      verificationCode = #{verificationCode,jdbcType=VARCHAR}
+    where userId = #{userId,jdbcType=SMALLINT}
+  </update>
+  
+  <select id="selectByNameDns" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where userName = #{userName}
+    and companyDns = #{dns}
+  </select>
+  
+</mapper>
